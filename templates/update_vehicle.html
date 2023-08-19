@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% load static %}
+{% block scripts %}
+
+{% endblock scripts %}
+
+
+{% block title %}
+Update Vehicle Details
+
+{% endblock title %}
+
+
+{% block content %}
+
+{% comment %} <hr> {% endcomment %}
+
+
+
+<form method="post">
+    {% csrf_token %}
+    {{form|crispy}}
+    <br>
+    <button type="submit" class="btn btn-success">Click to Submit</button>
+</form>
+
+{% endblock content %}

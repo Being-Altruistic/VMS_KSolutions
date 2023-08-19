@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% load static %}
+{% block scripts %}
+
+{% endblock scripts %}
+
+
+{% block title %}
+Add Vehicle Details
+
+{% endblock title %}
+
+
+{% block content %}
+
+{% comment %} <hr> {% endcomment %}
+
+
+{% csrf_token %}
+
+<form method="post" action="{% url 'vms:vehicle-save' %}">
+    {% csrf_token %}
+    {{form|crispy}}
+    <br>
+    <button type="submit" class="btn btn-success">Click to Submit</button>
+</form>
+
+{% endblock content %}

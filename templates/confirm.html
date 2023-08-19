@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% load static %}
+{% block scripts %}
+
+{% endblock scripts %}
+
+
+{% block title %}
+
+DELETE Data?
+{% endblock title %}
+
+
+{% block content %}
+
+
+  <div class="alert alert-warning" role="alert">
+        <b>Warning! Deletion is irreversible!</b>      
+  </div>
+
+
+{% comment %} <hr> {% endcomment %}
+
+<h2>Confirm Delete</h2>
+<p>Are you sure you want to delete the entry "{{ object }}"?</p>
+<form method="post">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-primary">Delete</button>
+</form>
+
+
+
+{% endblock content %}
+
+
+
+
+
+
+
+
+
+
+
+

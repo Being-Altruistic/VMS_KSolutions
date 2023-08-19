@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% load static %}
+{% block scripts %}
+
+{% endblock scripts %}
+
+
+{% block title %}
+List All Vehicle Info
+
+{% endblock title %}
+
+
+{% block content %}
+
+{% comment %} <hr> {% endcomment %}
+
+{% if messages %}
+  <div class="alert alert-success" role="alert">
+    {% for message in messages %}
+
+        <b>{{message}}</b>
+      
+    {% endfor %}
+  </div>
+
+{% endif %}
+
+
+{% for i in list_obj%}
+
+<div class="row">
+    <div class="col-lg-6 mb-4" style="margin-left: 20em;">
+
+
+        <div class="card mb-3" style="max-width: 540px;">
+            <div class="row g-0">
+              <div class="col-md-4">
+
+                {% if i.v_type == 'FOUR WHEELER' %}
+                <img src="/media/4_w.jpg" class="img-fluid rounded-start" style="max-width: 107%;height: 9em;" alt="4 Wheeler">
+                {% elif i.v_type == 'THREE WHEELER' %}
+                <img src="/media/3_w.jpg" class="img-fluid rounded-start" style="max-width: 107%;height: 9em;" alt="3 Wheeler">
+                {% elif i.v_type == 'TWO WHEELER' %}
+                <img src="/media/2_w.jpg" class="img-fluid rounded-start" style="max-width: 107%;height: 9em;" alt="2 Wheeler">
+                {% endif %}
+              </div>
+              <div class="col-md-8">
+                <div class="card-body">
+                  <h5 class="card-title">{{i.v_type}}</h5>
+                  <h6 class="card-subtitle mb-2 text-body-secondary">{{i.pk}} No.{{i.v_number}}</h6>
+                  <p class="card-text">{{i.v_model}}</p>
+                  <p class="card-text">Description:: {{i.v_description}}</p>
+                  {% if l1_type %}
+                    <a href="{% url "vms:vehicle-update" pk=i.pk %}" class="btn btn-warning">Edit</a>
+
+                    <a href="{% url "vms:vehicle-delete" pk=i.pk %}" class="btn btn-danger">Delete</a>
+                 {% elif l2_type %}
+                    <a href="{% url "vms:vehicle-update" pk=i.pk %}" class="btn btn-primary">Edit</a>
+                 {% endif %}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+</div>
+
+{% endfor %}
+
+
+{% endblock content %}
